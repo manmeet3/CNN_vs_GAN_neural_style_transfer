@@ -1,0 +1,29 @@
+CMPE 258 Deep Learning Project Proposal
+
+The ability to personalize a person’s garments by visualizing how they fit and look is an active area of research [1] [2]. There is a feature in Amazon’s Echo Look which rates a person’s outfit on a scale based on existing curated outfits and expert opinions. There are many existing techniques that recommend outfits based on what a person already owns. The main shortcoming is a lack of personal touch in these recommendation systems. You’re given an item that you may like but deciding how it may look on you is left entirely to your imagination.
+
+The problem we will be investigating for our project is based on style transfers between images. Given a source person who is wearing a certain top, and a picture of a target person in the same orientation, we will apply style transfer in order to show what the target person looks like in that top. We will be following the techniques mentioned by Raj, et al [2]. 
+The existing implementation used by Raj, et al. is centered around an approach that 
+i) Separates the source garment from the person pose and shape
+ii) Synthesis of the garment on new body
+Ideally, we would like to extend this application to provide a front, and back image of the target in their new outfit, for which further research will be required. 
+We will use the readings listed in the references for enhancing our background knowledge in the subject. 
+The datasets will be scraped from various online shopping portals and google images, in addition to using any data sets provided by our referenced papers.
+The main evaluation metrics utilized will be Structural Similarity index (SSIM) in assessing the quality of transfer between the source and target (and more).
+
+Deliverables:
+Our final deliverables will be a colab, Model Card, final report, and a deployment of the model for interaction. 
+
+Colab: This will include all the documented code with execution output.
+Final Report: As per Canvas description.
+Google Model Card: This will include model description, performance, limitations, a live visualization of the test dataset, and finally a deployment of the model for further interaction. 
+
+
+References:
+Problem Specific 
+[1] https://arxiv.org/pdf/1707.09899.pdf
+[2] http://www.eye.gatech.edu/swapnet/paper.pdf
+
+General - Background information
+[3] https://github.com/cysmith/neural-style-tf
+[4] https://arxiv.org/pdf/1703.10593v6.pdf
