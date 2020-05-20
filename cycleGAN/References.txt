@@ -1,0 +1,2 @@
+Webapp: https://github.com/kirbiyik/neural-style    
+cycleGAN: https://yanjia.li/gender-swap-and-cyclegan-in-tensorflow-2-0/
