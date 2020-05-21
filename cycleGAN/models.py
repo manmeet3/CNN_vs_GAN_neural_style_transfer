@@ -1,10 +1,10 @@
-"""
-Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks
-https://arxiv.org/pdf/1703.10593.pdf
-"""
+# This module contains model implementations
+# The code has been adapted and modified from various sources on github.
+# Some of it was tf native, other in a pytorch implementation
+
 import tensorflow as tf
 
-
+# Refernce: https://github.com/ShHsLin/resnet-tensorflow
 class ReflectionPad2d(tf.keras.layers.Layer):
     def __init__(self, padding, **kwargs):
         super(ReflectionPad2d, self).__init__(**kwargs)
@@ -13,7 +13,8 @@ class ReflectionPad2d(tf.keras.layers.Layer):
     def call(self, inputs, **kwargs):
         return tf.pad(inputs, self.padding, 'REFLECT')
 
-
+# Reference: https://github.com/ShHsLin/resnet-tensorflow
+# https://github.com/tensorflow/models/blob/master/research/slim/nets/resnet_utils.py
 class ResNetBlock(tf.keras.Model):
     def __init__(self, dim):
         super(ResNetBlock, self).__init__()
@@ -37,6 +38,7 @@ class ResNetBlock(tf.keras.Model):
         outputs = inputs + x
         return outputs
 
+# Reference: https://github.com/jason9693/cycleGAN-tensorflow-v2/blob/master/Network/cycleGAN.py
 def make_generator_model(n_blocks):    
     stride_size = (2, 2)
     pad = 'same'
@@ -48,11 +50,11 @@ def make_generator_model(n_blocks):
     model.add(tf.keras.layers.BatchNormalization())
     model.add(tf.keras.layers.ReLU())
 
-    model.add(tf.keras.layers.Conv2D(128, (3, 3), strides=stride_size, padding='same', use_bias=False))
+    model.add(tf.keras.layers.Conv2D(128, (3, 3), strides=stride_size, padding=pad, use_bias=False))
     model.add(tf.keras.layers.BatchNormalization())
     model.add(tf.keras.layers.ReLU())
 
-    model.add(tf.keras.layers.Conv2D(256, (3, 3), strides=stride_size, padding='same', use_bias=False))
+    model.add(tf.keras.layers.Conv2D(256, (3, 3), strides=stride_size, padding=pad, use_bias=False))
     model.add(tf.keras.layers.BatchNormalization())
     model.add(tf.keras.layers.ReLU())
 
@@ -61,11 +63,11 @@ def make_generator_model(n_blocks):
         model.add(ResNetBlock(256))
 
     # Decoding
-    model.add(tf.keras.layers.Conv2DTranspose(128, (3, 3), strides=stride_size), padding='same', use_bias=False))
+    model.add(tf.keras.layers.Conv2DTranspose(128, (3, 3), strides=stride_size), padding=pad, use_bias=False))
     model.add(tf.keras.layers.BatchNormalization())
     model.add(tf.keras.layers.ReLU())
 
-    model.add(tf.keras.layers.Conv2DTranspose(64, (3, 3), strides=stride_size, padding='same', use_bias=False))
+    model.add(tf.keras.layers.Conv2DTranspose(64, (3, 3), strides=stride_size, padding=pad, use_bias=False))
     model.add(tf.keras.layers.BatchNormalization())
     model.add(tf.keras.layers.ReLU())
 
@@ -74,6 +76,7 @@ def make_generator_model(n_blocks):
 
     return model
 
+# Reference: https://github.com/jason9693/cycleGAN-tensorflow-v2/blob/master/Network/cycleGAN.py
 def make_discriminator_model():
     
     # C64-C128-C256-C512
