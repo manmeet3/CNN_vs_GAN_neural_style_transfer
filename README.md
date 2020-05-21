@@ -8,5 +8,7 @@ Web app deployment: http://ec2-3-101-59-187.us-west-1.compute.amazonaws.com:8080
 
 ### Contributions:
 Manmeet - CycleGAN
+
 Chinmay - VGG19
+
 Aditya - Data Collection and Web Deployment
