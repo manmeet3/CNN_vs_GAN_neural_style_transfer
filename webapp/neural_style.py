@@ -10,7 +10,7 @@ from model.cycleGAN import cGAN
 
 UPLOAD_FOLDER = './static/images/'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
-SECRET_KEY = 'YOUR SECRET KEY FOR FLASK HERE'
+SECRET_KEY = 'secret'
 
 
 app = Flask(__name__)
